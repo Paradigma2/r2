@@ -1,0 +1,8 @@
+<h1>Editing an Add</h1>
+<br/>
+<%= render 'form', job_ad: @job_ad %>
+
+<br/>
+<%= link_to 'Back', @job_ad, class:"btn btn-secondary" %>
+
+<%= link_to 'Delete', @job_ad, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>

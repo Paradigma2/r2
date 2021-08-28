@@ -1,0 +1,34 @@
+<div class="jumbotron">
+  <h1 class="display-4">
+    <%= @job_ad.name %>
+  </h1>
+  <h1 class="display-4">
+    <%= @job_ad.employer %>
+  </h1>
+  <hr/>
+  <h4>Description</h4>
+  <p class="lead">
+    <%= @job_ad.description %>
+  </p>
+  <h4>Email</h4>
+  <p class="lead">
+    <%= @job_ad.email %>
+  </p>
+  <h4>Category</h4>
+  <p class="lead">
+    <%= @job_ad.category %>
+  </p>
+  <h4>Lasts until</h4>
+  <p class="lead">
+    <%= @job_ad.valid_until %>
+  </p>
+  <br/>
+
+  <hr/>
+  <h3>Apply here</h3>
+  <%= render 'job_applications/form', job_application: JobApplication.new %>
+  <hr/>
+  <%= link_to 'Edit', edit_job_ad_path(@job_ad), class:"btn btn-secondary" %>
+  <%= link_to 'Delete', @job_ad, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  <%= link_to 'Back', job_ads_path, class:"btn btn-dark" %>
+</div>

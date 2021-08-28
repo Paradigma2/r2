@@ -1,0 +1,45 @@
+require: rubocop-rails
+
+AllCops:
+  Exclude:
+  - 'bin/*'
+  - 'db/*'
+  - 'db/**/*'
+  - 'config/*'
+  - 'config/**/*'
+  - 'spec/*'
+
+Layout/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Exclude:
+  - 'spec/**/*'
+
+Metrics/MethodLength:
+  Max: 20
+  CountAsOne: ['array', 'hash', 'heredoc']
+
+#Metrics/AbcSize:
+#  Max: 25
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/WordArray:
+  EnforcedStyle: brackets
+
+Lint/ShadowingOuterLocalVariable:
+  Enabled: false

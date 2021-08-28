@@ -1,0 +1,29 @@
+<table class="table table-striped table-bordered table-hover">
+  <thead class="thead-dark">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Category</th>
+    <th>Status</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @job_ads.each do |job_ad| %>
+    <tr>
+      <td>
+        <%= link_to job_ad.name, job_ad %>
+      </td>
+
+      <td><%= job_ad.email %></td>
+      <td><%= job_ad.category %></td>
+      <td><%= job_ad.status %></td>
+
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= link_to 'Apply', new_job_application, class:"btn btn-secondary" %>

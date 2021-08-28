@@ -1,0 +1,46 @@
+<%= form_with(model: job_application, local: true) do |form| %>
+  <% if @job_application.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @job_application.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= form.number_field :job_ad_id, class:'form-control', value: @job_ad.id, type: :hidden %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.text_field :full_name, class:'form-control', placeholder:'Full Name' %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.text_field :email, class:'form-control', placeholder:'Email' %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.text_field :phone_number, class:'form-control', placeholder:'Phone Number' %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.text_field :address, class:'form-control', placeholder:'Address' %>
+  </div>
+
+  <p>Qualification</p>
+  <div class="field form-group">
+    <%= form.select :qualification, options_for_select(JobApplication.qualifications.map {|k, _v| [k, k]}), placeholder:'Qualification' %>
+  </div>
+
+  <p>Date of Birth</p>
+  <div class="field form-group">
+    <%= form.date_select :date_of_birth, class:'form-control', placeholder:'Date of Birth' %>
+  </div>
+
+  <br/>
+  <div class="actions">
+    <%= form.submit class:'btn btn-secondary' %>
+  </div>
+<% end %>

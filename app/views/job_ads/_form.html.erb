@@ -1,0 +1,45 @@
+<%= form_with(model: job_ad, local: true) do |form| %>
+  <% if job_ad.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(job_ad.errors.count, 'error') %> prohibited this job ad from being saved:</h2>
+
+      <ul>
+        <% job_ad.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <% form.label :name %>
+    <%= form.text_field :name, class:'form-control', placeholder:'Name' %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.text_field :description, class:'form-control', placeholder:'Description' %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.text_field :email, value: current_user.email, class:'form-control', placeholder:'Email' %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.text_field :employer, class:'form-control', placeholder:'Employer' %>
+  </div>
+
+  <p>Category</p>
+  <div class="field form-group">
+    <%= form.select :category, options_for_select(JobAd.categories.map {|k, _v| [k, k]}), placeholder:'Category' %>
+  </div>
+
+  <p>Lasts until</p>
+  <div class="field form-group">
+    <%= form.date_select :valid_until, class:'form-control', placeholder:'Lasts until' %>
+  </div>
+
+  <br/>
+  <div class="actions">
+    <%= form.submit class:'btn btn-secondary' %>
+  </div>
+<% end %>
