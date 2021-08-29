@@ -9,12 +9,11 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
-class User < ApplicationRecord
-  # validates :email, uniqueness: { case_sensitive: false }, presence: true
-  # validates :encrypted_password, presence: true
-  validates :full_name, presence: true
 
-  devise :database_authenticatable, :validatable
-
-  has_many :job_ads, dependent: :nullify
+FactoryBot.define do
+  factory :user do
+    full_name { "#{Faker::Name.first_name} #{Faker::Name.last_name}" }
+    password { Faker::Internet.password }
+    email { Faker::Internet.email }
+  end
 end

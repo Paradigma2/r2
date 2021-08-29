@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: job_applications
+#
+#  id            :bigint           not null, primary key
+#  job_ad_id     :bigint           not null
+#  email         :string           not null
+#  full_name     :string           not null
+#  date_of_birth :date
+#  address       :string           not null
+#  phone_number  :string           not null
+#  qualification :integer          not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
 class JobApplication < ApplicationRecord
   belongs_to :job_ad
 
@@ -17,15 +32,11 @@ class JobApplication < ApplicationRecord
   private
 
   def validate_phone
-    if phone_number =~ /[a-zA-Z]+/
-      errors.add :phone_number, 'is not an phone number'
-    end
+    errors.add :phone_number, 'is not an phone number' if phone_number =~ /[a-zA-Z]+/
   end
 
   def validate_email
-    unless email =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-      errors.add :email, 'is not an email'
-    end
+    errors.add :email, 'is not an email' unless email =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   end
 
   def notify

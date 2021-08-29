@@ -1,9 +1,23 @@
+# == Schema Information
+#
+# Table name: job_ads
+#
+#  id          :bigint           not null, primary key
+#  name        :string           not null
+#  description :text
+#  employer    :string           not null
+#  email       :string           not null
+#  category    :integer          not null
+#  valid_until :date
+#  document    :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :bigint
+#
 class JobAd < ApplicationRecord
   class EmailValidator < ActiveModel::EachValidator
     def validate_each(record, attribute, value)
-      unless value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-        record.errors.add attribute, 'is not an email'
-      end
+      record.errors.add attribute, 'is not an email' unless value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
     end
   end
 
@@ -13,6 +27,7 @@ class JobAd < ApplicationRecord
   validate :validate_email
   validates :name, presence: true
   validates :employer, presence: true
+  validates :category, presence: true
 
   has_many :job_applications, dependent: :destroy
   belongs_to :user
@@ -26,8 +41,6 @@ class JobAd < ApplicationRecord
   private
 
   def validate_email
-    unless email =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-      errors.add :email, 'is not an email'
-    end
+    errors.add :email, 'is not an email' unless email =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   end
 end
