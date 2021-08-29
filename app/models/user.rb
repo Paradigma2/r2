@@ -4,4 +4,6 @@ class User < ApplicationRecord
   validates :full_name, presence: true
 
   devise :database_authenticatable, :validatable
+
+  has_many :job_ads
 end

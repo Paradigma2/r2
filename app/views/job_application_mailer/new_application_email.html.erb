@@ -1,0 +1,11 @@
+<h4>You got a new application from <%= @job_application.full_name %>!</h4>
+<span>Application details</span>
+<hr/>
+<p>For position: <%= @job_application.job_ad.name %></p>
+<p>Email: <%= @job_application.email %></p>
+<p>Qualification: <%= @job_application.qualification %></p>
+<p>Address: <%= @job_application.address %></p>
+<p>Phone: <%= @job_application.phone_number %></p>
+<% unless @job_application.date_of_birth.nil? %>
+  <p>Date of birth: <%= @job_application.date_of_birth %></p>
+<% end %>

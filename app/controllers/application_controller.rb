@@ -1,4 +1,4 @@
 class ApplicationController < ActionController::Base
   include ErrorRescuable
-  # include Pundit
+  include Pundit
 end

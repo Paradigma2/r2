@@ -7,12 +7,15 @@ class JobAd < ApplicationRecord
     end
   end
 
+  mount_uploader :document, DocumentUploader
+
   validates :email, presence: true
   validate :validate_email
   validates :name, presence: true
   validates :employer, presence: true
 
   has_many :job_applications, dependent: :destroy
+  belongs_to :user
 
   enum category: { iOS: 0, Java: 1, Ruby: 2, Python: 3, DevOps: 4, QA: 5 }
 

@@ -10,6 +10,8 @@ module ErrorRescuable
 
     rescue_from ActionController::UnknownFormat, with: :handle_api_error
     rescue_from ActionController::ParameterMissing, with: :handle_params_error
+
+    rescue_from Pundit::NotAuthorizedError, with: :handle_not_authorized
   end
 
   def handle_api_error(error)
@@ -30,5 +32,9 @@ module ErrorRescuable
 
   def handle_params_error(error)
     handle_api_error(ApplicationError.new("Parameter #{error.param} is missing", :bad_request))
+  end
+
+  def handle_not_authorized(_error)
+    handle_api_error(ApplicationError.new('You are not allowed to access this resource!', :forbidden))
   end
 end

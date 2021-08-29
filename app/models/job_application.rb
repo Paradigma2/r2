@@ -12,6 +12,8 @@ class JobApplication < ApplicationRecord
 
   enum qualification: { VSS: 0, VŠS: 1, SSS: 2, NK: 3 }
 
+  after_create :notify
+
   private
 
   def validate_phone
@@ -24,5 +26,9 @@ class JobApplication < ApplicationRecord
     unless email =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
       errors.add :email, 'is not an email'
     end
+  end
+
+  def notify
+    JobApplicationMailer.new_application_email(self).deliver_later
   end
 end

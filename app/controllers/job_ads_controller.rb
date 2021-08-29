@@ -11,17 +11,17 @@ class JobAdsController < ApplicationController
   end
 
   def new
-    # authorize(current_user)
+    authorize(JobAd)
 
     @job_ad = JobAd.new
   end
 
   def edit
-    # authorize(current_user)
+    authorize(@job_ad)
   end
 
   def create
-    # authorize(current_user)
+    authorize(JobAd)
 
     @job_ad = JobAd.new(job_ad_params)
 
@@ -49,6 +49,8 @@ class JobAdsController < ApplicationController
   end
 
   def destroy
+    authorize(@job_ad)
+
     @job_ad.destroy
     respond_to do |format|
       format.html { redirect_to job_ads_path, notice: 'The ad was successfully deleted.' }
@@ -63,6 +65,6 @@ class JobAdsController < ApplicationController
   end
 
   def job_ad_params
-    params.require(:job_ad).permit(:name, :description, :employer, :email, :category, :valid_until, :document)
+    params.require(:job_ad).permit(:name, :description, :employer, :email, :category, :valid_until, :document, :user_id)
   end
 end

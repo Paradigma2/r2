@@ -22,13 +22,21 @@
   <p class="lead">
     <%= @job_ad.valid_until %>
   </p>
+  <h4>Document</h4>
+  <p class="lead">
+    <%= link_to "Download", @job_ad.document_url %>
+  </p>
   <br/>
 
+  <% if current_user&.id == @job_ad.user.id %>
+    <%= link_to 'Edit', edit_job_ad_path(@job_ad), class:"btn btn-secondary" %>
+    <%= link_to 'Delete', @job_ad, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  <% else %>
+    <hr/>
+    <h3>Apply here</h3>
+    <%= render 'job_applications/form', job_application: JobApplication.new %>
+  <% end %>
+
   <hr/>
-  <h3>Apply here</h3>
-  <%= render 'job_applications/form', job_application: JobApplication.new %>
-  <hr/>
-  <%= link_to 'Edit', edit_job_ad_path(@job_ad), class:"btn btn-secondary" %>
-  <%= link_to 'Delete', @job_ad, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
   <%= link_to 'Back', job_ads_path, class:"btn btn-dark" %>
 </div>

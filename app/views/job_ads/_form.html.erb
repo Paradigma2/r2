@@ -38,6 +38,13 @@
     <%= form.date_select :valid_until, class:'form-control', placeholder:'Lasts until' %>
   </div>
 
+  <p>Document</p>
+  <%= form.file_field :document, class:'form-controll', placeholder:'Upload a document' %>
+
+  <div class="field form-group">
+    <%= form.number_field :user_id, class:'form-control', value: current_user.id, type: :hidden %>
+  </div>
+
   <br/>
   <div class="actions">
     <%= form.submit class:'btn btn-secondary' %>

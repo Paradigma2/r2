@@ -14,22 +14,25 @@ JobAd.create(
     description: 'An iOS Developer who has technical knowledge in Git, XCode, Swift, MVVM, Cocoa Touch Framework',
     employer: 'Ingemark',
     email: ENV['TEST_MAIL'] || 'samarijum+ignore@gmail.com',
-    category: 'ios',
-    valid_until: Date.current + 7.days
+    category: 'iOS',
+    valid_until: Date.current + 7.days,
+    user: User.find_by_email('yugi@gmail.com')
 )
 JobAd.create(
     name: 'Senior DevOps',
     description: 'A DevOps Engineer should possess very good knowledge of the Linux operating system, understands command-line operations and file system',
     employer: 'Ingemark',
     email: ENV['TEST_MAIL'] || 'samarijum+ignore@gmail.com',
-    category: 'devops',
-    valid_until: Date.current - 2.days
+    category: 'DevOps',
+    valid_until: Date.current - 2,
+    user: User.find_by_email('yugi@gmail.com')
 )
 JobAd.create(
     name: 'Medior Java Developer',
     description: 'If you’re a Java developer and you have minimum of 3 years experience in working with Java',
     employer: 'Kaiba co.',
     email: ENV['TEST_MAIL'] || 'samarijum+ignore@gmail.com',
-    category: 'devops',
-    valid_until: Date.current + 1.month
+    category: 'Java',
+    valid_until: Date.current + 1.month,
+    user: User.find_by_email('kaiba@gmail.com')
 )
