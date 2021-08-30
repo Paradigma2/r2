@@ -1,24 +1,39 @@
-# README
+# R2 README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* [Ruby version] 2.7.4
+* [Rails version] 5.2.6
 
-Things you may want to cover:
+####[System dependencies] 
+* bundle install
 
-* Ruby version
+####[Configuration]
+Database:
+* export DB_HOST=<host>, otherwise 127.0.0.1
+* export DB_PORT=<port>, otherwise 5432
+* export DB_USERNAME=<user>, otherwise postgres
+* export DB_PASSWORD=<password>, otherwise secret
 
-* System dependencies
+Mailer:
+* export GOOGLE_USERNAME=<username>
+* export GOOGLE_USERNAME=<password>
+* export TEST_MAIL=<mail for seeded ads>
 
-* Configuration
+####[Database creation]
+```
+docker run --name <name> /
+-p 5432:5432 /
+-e POSTGRES_PASSWORD=secret /
+-d postgres
+```
+Then create 2 schemas, r2_dev and r2_test
 
-* Database creation
+####[Database initialization]
+* rake db:migrate
+* rake db:migrate RAILS_ENV=test
+* rake db:seed
 
-* Database initialization
+####[Run tests]
+rspec
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+####[Rubocop]
+rubocop
